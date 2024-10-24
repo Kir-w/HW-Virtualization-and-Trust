@@ -1,0 +1,19 @@
+[package]
+name = "HAL"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+avr-device = { version = "0.3", features = ["atmega328p"] }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[build]
+target = "avr-unknown-gnu-atmega328"
+
+[unstable]
+build-std = ["core"]
