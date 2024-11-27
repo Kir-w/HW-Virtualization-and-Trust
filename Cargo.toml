@@ -22,6 +22,4 @@ path = "src/main_test.rs"
 [unstable]
 build-std = ["core"]
 
-[features]
-atmega328p = []
-cortex-m7 = []
+
