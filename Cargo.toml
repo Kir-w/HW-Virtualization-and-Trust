@@ -7,11 +7,9 @@ edition = "2021"
 avr-device = { version = "0.3", features = ["atmega328p"] }
 
 [profile.dev]
-debug = true
 panic = "abort"
 
 [profile.release]
-debug = true
 panic = "abort"
 
 # Section [bin] pour spécifier le fichier principal du programme
