@@ -20,5 +20,6 @@ It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
 The src folder has now multiple modules depending on the target, linked with main.rs.
 
 
+*The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with qemu.
 
 
