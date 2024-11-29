@@ -1,10 +1,16 @@
 [package]
-name = "projet_step2"
+name = "HAL"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 avr-device = { version = "0.3", features = ["atmega328p"] }
+
+[features]
+gpio = []
+usart = []
+spi = []
+default = ["gpio","usart","spi"]
 
 [profile.dev]
 panic = "abort"
@@ -12,12 +18,11 @@ panic = "abort"
 [profile.release]
 panic = "abort"
 
-# Section [bin] pour spécifier le fichier principal du programme
-[[bin]]
-name = "projet_step2"
-path = "src/main_test.rs"
+[build]
+target = "avr-unknown-gnu-atmega328"
 
 [unstable]
 build-std = ["core"]
+
 
 
