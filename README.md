@@ -16,7 +16,7 @@ It would be nice to have something to prevent modifying the register in an incoh
 
 **Second feature (November) : the USART feature**
 
-The Universal Synchronous/Asynchronous Receiver/Transmitter feature is a flexible serial communication interface. It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
+The Universal Synchronous/Asynchronous Receiver/Transmitter feature is a flexible serial communication interface. It allows for both asynchronous UART and synchronous SPI communication. It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
 The src folder has now multiple modules depending on the target, linked with main.rs.
 
 **Third feature : the SPI feature**
