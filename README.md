@@ -16,14 +16,12 @@ It would be nice to have something to prevent modifying the register in an incoh
 
 **Second feature (November) : the USART feature**
 
-It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
+The Universal Synchronous/Asynchronous Receiver/Transmitter feature is a flexible serial communication interface. It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
 The src folder has now multiple modules depending on the target, linked with main.rs.
 
-** Third feature : the SPI feature**
+**Third feature : the SPI feature**
 
-For both targets
-
-
+The Serial Peripheral Interface feature is a communication mode supported by USART, for both of the targets here. It's a synchronous serial communication protocol that allows for fast data exchange.
 
 *The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with qemu, they are from https://github.com/rust-embedded/cortex-m-quickstart.
 
