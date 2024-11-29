@@ -1,4 +1,4 @@
-# HW-Virtualization-and-trust
+# HW-Virtualization-and-Trust
 
 ### Hardware Abstract Layer project in Rust
 
