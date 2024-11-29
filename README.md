@@ -19,6 +19,11 @@ It would be nice to have something to prevent modifying the register in an incoh
 It abstracts the Atmega328p (Arduino Uno) and another target : the Cortex-M7.
 The src folder has now multiple modules depending on the target, linked with main.rs.
 
+** Third feature : the SPI feature**
+
+For both targets
+
+
 
 *The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with qemu, they are from https://github.com/rust-embedded/cortex-m-quickstart.
 
