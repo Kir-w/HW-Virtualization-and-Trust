@@ -23,6 +23,10 @@ The src folder has now multiple modules depending on the target, linked with mai
 
 The Serial Peripheral Interface feature is a communication mode supported by USART, for both of the targets here. It's a synchronous serial communication protocol that allows for fast data exchange.
 
+**Fourth feature : I2C feature**
+
+The Inter-Integrated Circuit feature
+
+
+
 *The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with qemu, they are from https://github.com/rust-embedded/cortex-m-quickstart.
-
-
