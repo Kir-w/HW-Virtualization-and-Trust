@@ -1,19 +1,18 @@
 #![no_std]
 #![no_main]
 
-mod gpio;
-mod usart;
-mod spi;
-
-#[cfg(target_arch = "avr")]
+#[cfg(feature= "gpio")]
+pub mod gpio;
 use gpio::{Gpio, PinMode};
-#[cfg(target_arch = "avr")]
+
+#[cfg(feature = "usart")]
+pub mod usart;
 use usart::Usart;
 
-#[cfg(target_arch = "arm")]
-use gpio::{Gpio, PinMode};
-#[cfg(target_arch = "arm")]
-use usart::Usart;
+#[cfg(feature = "spi")]
+pub mod spi;
+use spi::Spi;
+
 
 // To handle the errors
 use core::panic::PanicInfo;
@@ -29,18 +28,24 @@ pub extern "C" fn main() -> ! {
 
     #[cfg(target_arch = "avr")]
     {
+        
         gpio.pin_mode(5, PinMode::Output); // PORTB5, Arduino Pin 13
         Usart::init(9600); // Initialise USART
+
+        Spi::init_master();//Initialise SPI
+
         loop {
             gpio.digital_write(5, true); // Turn LED on
-            Usart::send(1); // Send signal
+            Usart::send(1); // Send signal via usart
+            //Spi::send(0x11); //send data via spi
             delay();
             gpio.digital_write(5, false); // Turn LED off
             Usart::send(0); // Send signal
+            //Spi::receive(); //read response
             delay();
         }
     }
-     
+     /* 
     #[cfg(target_arch = "arm")]
     {
         gpio.pin_mode(2, PinMode::Output); // Pin 2 on Cortex-M7
@@ -49,22 +54,18 @@ pub extern "C" fn main() -> ! {
             let led_state = Usart::receive(); // Receive signal
             gpio.digital_write(2, led_state != 0); // Set LED state
         }
-    }
+    }*/
 
-    #[cfg(target_arch = "avr")]
+    /*#[cfg(target_arch = "avr")] // unreacheable ?? 
     {
-        spi::Spi::init_master(); // Initialiser le SPI en mode maître
-
+        Spi::init_master();//Initialise SPI
         loop {
-            // Envoyer des données via SPI
-            spi::Spi::send(0xAA);
-
-            // Lire une réponse via SPI
-            let received_data = spi::Spi::receive();
-
-            // Vous pouvez utiliser les données reçues pour contrôler une LED, par exemple
+            Spi::send(0x11); //send data via spi
+            delay();
+            Spi::receive(); //read response
+            delay();
         }
-    }
+    }*/
 
 }
 

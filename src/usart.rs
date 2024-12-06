@@ -18,8 +18,7 @@ impl Usart {
             write_volatile(UBRR0L, ubrr as u8);
 
             // Activer TX et RX
-            write_volatile(UCSR0B, (1 << 3) | (1 << 4));
-
+            write_volatile(UCSR0B, (1 << 3) |(1 << 4) );
             // Configurer USART : 8 data bits, 1 stop bit, no parity
             write_volatile(UCSR0C, (1 << 1) | (1 << 2));
         }
@@ -32,7 +31,7 @@ impl Usart {
         }
     }
 
-    pub fn receive() -> u8 {
+    pub fn receive() -> u8 { // essaye et fonctionne sans vrm utile ????
         unsafe {
             while read_volatile(UCSR0A) & (1 << 7) == 0 {}
             read_volatile(UDR0)
