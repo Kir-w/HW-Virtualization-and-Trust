@@ -1,14 +1,12 @@
-use rp_pico::hal::gpio::{Pin, Function, PushPullOutput};
+use rp_pico::hal::gpio::{Pin, PushPullOutput};
 
 pub struct Gpio {
-    led: Pin<Function<PushPullOutput>>,
+    led: Pin<PushPullOutput>,
 }
 
 impl Gpio {
-    pub fn new(mut pins: rp_pico::hal::gpio::Pins) -> Self {
-        Self {
-            led: pins.gpio25.into_push_pull_output(),
-        }
+    pub fn new(led: Pin<PushPullOutput>) -> Self {
+        Self { led }
     }
 
     pub fn blink_led(&mut self) {
@@ -18,3 +16,4 @@ impl Gpio {
         cortex_m::asm::delay(500_000);
     }
 }
+
