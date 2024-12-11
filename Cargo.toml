@@ -5,12 +5,14 @@ edition = "2021"
 
 [dependencies]
 avr-device = { version = "0.3", features = ["atmega328p"] }
+panic-halt = "0.2.0"
 
 [features]
 gpio = []
 usart = []
 spi = []
-default = ["gpio","usart","spi"]
+i2c = []
+default = ["gpio","usart","spi","i2c"]
 
 [profile.dev]
 panic = "abort"
@@ -23,6 +25,7 @@ target = "avr-unknown-gnu-atmega328"
 
 [unstable]
 build-std = ["core"]
+
 
 
 

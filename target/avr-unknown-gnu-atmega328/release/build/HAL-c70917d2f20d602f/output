@@ -1,4 +1,0 @@
-cargo:rustc-link-search=C:\Users\arian\OneDrive - De Vinci\Documents\GitHub\HW-Virtualization-and-Trust\target\avr-unknown-gnu-atmega328\release\build\HAL-c70917d2f20d602f\out
-cargo:rerun-if-changed=memory.x
-cargo:rustc-link-arg=--nmagic
-cargo:rustc-link-arg=-Tlink.x
