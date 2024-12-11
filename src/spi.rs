@@ -1,5 +1,3 @@
-#![no_std]
-
 pub struct Spi;
 
 impl Spi {

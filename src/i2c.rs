@@ -1,4 +1,3 @@
-#![no_std]
 pub struct I2cInterface;
 
 impl I2cInterface {
