@@ -1,0 +1,8 @@
+Cible dans Cargo.toml :
+
+Pour ESP32, utilisez :
+toml
+Copier le code
+[dependencies]
+esp-idf-sys = "0.34"
+esp-idf-hal = "0.34"
