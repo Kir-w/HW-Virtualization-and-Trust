@@ -13,8 +13,8 @@ mod i2c;
 
 use gpio::Gpio;
 use usart::Usart;
-use spi::Spi;
-use i2c::I2c;
+use spi::SpiInterface;
+use i2c::I2cInterface;
 
 use panic_halt as _;
 
@@ -43,15 +43,28 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
-    let mut gpio = Gpio::new(pins);
-    let mut usart = Usart::new();
-    let mut spi = Spi::new();
-    let mut i2c = I2c::new();
+    let mut gpio = Gpio::new(pins.gpio25.into_push_pull_output());
+    let mut usart = Usart::new(
+        pins.gpio0.into_function_uart(),
+        pins.gpio1.into_function_uart(),
+        pac.UART0,
+    );
+    let mut spi = SpiInterface::new(
+        pins.gpio18.into_function_spi(),
+        pins.gpio19.into_function_spi(),
+        pins.gpio16.into_function_spi(),
+        pac.SPI0,
+    );
+    let mut i2c = I2cInterface::new(
+        pins.gpio8.into_function_i2c(),
+        pins.gpio9.into_function_i2c(),
+        pac.I2C0,
+    );
 
     loop {
         gpio.blink_led();
         usart.send_data(1);
-        spi.transfer_data(0x11);
-        i2c.read_sensor();
+        let _spi_response = spi.transfer_data(0x11);
+        let _i2c_data = i2c.read_sensor(0x40, 0x00); // Exemple avec une adresse et un registre
     }
 }
