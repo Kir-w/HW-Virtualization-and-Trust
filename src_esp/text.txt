@@ -1,0 +1,17 @@
+Modifications nécessaires
+Bibliothèque : Utilisez rp-hal dans le fichier Cargo.toml :
+
+toml
+Copier le code
+[dependencies]
+rp-hal = "0.5"
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+panic-halt = "0.2"
+Cible : Configurez le fichier .cargo/config.toml pour compiler pour la Raspberry Pi Pico :
+
+toml
+Copier le code
+[build]
+target = "thumbv6m-none-eabi"
+Modules : Les modules gpio.rs, usart.rs, spi.rs, et i2c.rs devront être adaptés pour le Pico.
