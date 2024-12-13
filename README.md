@@ -19,6 +19,10 @@ It would be nice to have something to prevent modifying the register in an incoh
 The Universal Synchronous/Asynchronous Receiver/Transmitter feature is a flexible serial communication interface. It allows for both asynchronous UART and synchronous SPI communication. It abstracts the Atmega328p (Arduino Uno) and another target : the ARM Cortex-M.
 The src folder has now multiple modules depending on the target, linked with main.rs.
 
+[CORRECTION USART] (Don't hesitate to remove this part)
+You mix two different architectures, so it cannot work correctly
+You didn't really implement the USART feature for the second target
+
 **Third feature : the SPI feature**
 
 The Serial Peripheral Interface feature is a communication mode supported by USART, for both of the targets here. It's a synchronous serial communication protocol that allows for fast data exchange.
