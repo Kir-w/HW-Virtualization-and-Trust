@@ -1,13 +1,12 @@
-//USART pour l'arduino
 use core::ptr::{read_volatile, write_volatile};
 
 // Définition des registres pour l'USART sur l'Atmega328p
-const UDR0: *mut u8 = 0xC6 as *mut u8;   // USART Data Register
-const UCSR0A: *mut u8 = 0xC0 as *mut u8; // USART Control and Status Register A
-const UCSR0B: *mut u8 = 0xC1 as *mut u8; // USART Control and Status Register B
-const UCSR0C: *mut u8 = 0xC2 as *mut u8; // USART Control and Status Register C
-const UBRR0H: *mut u8 = 0xC5 as *mut u8; // USART Baud Rate Register High
-const UBRR0L: *mut u8 = 0xC4 as *mut u8; // USART Baud Rate Register Low
+const UDR0: *mut u8 = 0xC6 as *mut u8;   // USART Register de données
+const UCSR0A: *mut u8 = 0xC0 as *mut u8; // USART Registre de contrôle et de statut A
+const UCSR0B: *mut u8 = 0xC1 as *mut u8; // USART Registre de contrôle et de statut B
+const UCSR0C: *mut u8 = 0xC2 as *mut u8; // USART Registre de contrôle et de statut C
+const UBRR0H: *mut u8 = 0xC5 as *mut u8; // USART Registre Baud Rate élevé
+const UBRR0L: *mut u8 = 0xC4 as *mut u8; // USART Registre Baud Rate bas
 
 pub struct Usart;
 
@@ -32,10 +31,10 @@ impl Usart {
         }
     }
 
-    pub fn receive() -> u8 { // essaye et fonctionne sans vrm utile ????
+    /*pub fn receive() -> u8 { // pas utilisé dans cette version du code
         unsafe {
             while read_volatile(UCSR0A) & (1 << 7) == 0 {}
             read_volatile(UDR0)
         }
-    }
+    }*/ 
 }
