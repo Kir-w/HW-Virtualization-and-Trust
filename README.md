@@ -35,10 +35,9 @@ You could abstract more the register content, for example 0x2C is not very expli
 
 **Fourth feature (December) : I2C feature**
 
-The Inter-Integrated Circuit feature
+The Inter-Integrated Circuit feature is a serial communication protocol for many applications. Data are sent or received at one time (half-duplex protocol), and it supports many devices at the same time. It also supports many masters and slaves but there is a slower data transfer rate than SPI.
 
-
-(The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with QEMU, they are from https://github.com/rust-embedded/cortex-m-quickstart.)
-
+## Comments
+The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with QEMU, they are from https://github.com/rust-embedded/cortex-m-quickstart.
 
 The report is available in .pdf, or here : https://docs.google.com/document/d/1T9L17Sxoja9nH0tQfcbXIxWXTTl7WOaOAidKeFSuELI/edit?usp=sharing
