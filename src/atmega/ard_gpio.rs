@@ -1,19 +1,18 @@
-//GPIO pour l'arduino 
 use core::ptr::{read_volatile, write_volatile};
 
-// Definitions for PORTB registers
+// Definition des registres pour portB
 const PORTB: *mut u8 = 0x25 as *mut u8;
 const DDRB: *mut u8 = 0x24 as *mut u8;
 const PINB: *const u8 = 0x23 as *const u8;
 
-// Enumeration: represent the state of a pin
+// Enumeration: les etats de la pin
 #[derive(Clone, Copy)]
 pub enum PinMode {
     _Input,
     Output,
 }
 
-// Structure: represent GPIO
+// Structure: le GPIO
 pub struct Gpio {
     port: *mut u8,
     ddr: *mut u8,
