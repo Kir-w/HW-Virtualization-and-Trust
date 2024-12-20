@@ -1,14 +1,10 @@
-//I2C pour l'arduino
 pub struct I2cInterface;
 
 impl I2cInterface {
-    // Initialisation de l'I2C en tant que maître
     pub fn init() {
         // Configuration des registres pour initialiser l'I2C en mode maître
         unsafe {
-            // Activer l'I2C, définir la vitesse et la configuration du périphérique
-            // Dans cet exemple, nous configurons une vitesse de 100 kHz, typique pour I2C
-            // Nous utilisons une fréquence de CPU de 16 MHz, donc une valeur appropriée pour TWBR
+            // Activer l'I2C = définir la vitesse + configuration du périphérique -> fréquence de CPU de 16 MHz
 
             // Activer le périphérique TWI (I2C) et définir le mode maître
             core::ptr::write_volatile(0xB8 as *mut u8, 0x00); // TWI Control Register (TWCR) - Désactivation de TWI avant modification
