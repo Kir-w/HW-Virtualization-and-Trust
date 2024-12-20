@@ -1,3 +1,4 @@
+//SPI pour l'arduino
 pub struct Spi;
 // SPI Registers
 const SPCR: *mut u8 = 0x2C as *mut u8; // SPI Control Register
