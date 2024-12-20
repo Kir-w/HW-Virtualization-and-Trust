@@ -23,33 +23,34 @@ const SPI_W0: *mut u32 = (SPI_BASE + 0x80) as *mut u32; // Data Buffer
 const SPI_CTRL: *mut u32 = (SPI_BASE + 0x08) as *mut u32; // Control Register
 const SPI_CLOCK: *mut u32 = (SPI_BASE + 0x1C) as *mut u32; // Clock Configuration Register
 const SPI_USER: *mut u32 = (SPI_BASE + 0x1C) as *mut u32; // User Configuration Register
-const SPI_USER1: *mut u32 = (SPI_BASE + 0x20) as *mut u32; // User Configuration Register 1
 
-/// Initialisation SPI en mode maître
-pub fn init_master() {
-    unsafe {
-        // Configurer SPI en maître
-        write_volatile(SPI_CTRL, 0); // Désactiver les fonctions inutiles
-        write_volatile(SPI_USER, (1 << 6)); // Activer MOSI
-        write_volatile(SPI_CLOCK, 0x0000000E); // Configurer SPI Clock (fck/16)
+impl Spi{
+    /// Initialisation SPI en mode Master
+    pub fn init_master() {
+        unsafe {
+            // Configurer SPI en maître
+            write_volatile(SPI_CTRL, 0); // Désactiver les fonctions inutiles
+            write_volatile(SPI_USER, 1 << 6); // Activer MOSI
+            write_volatile(SPI_CLOCK, 0x0000000E); // Configurer SPI Clock (fck/16)
 
-        // Longueur des données
-        write_volatile(SPI_MOSI_DLEN, 7); // Longueur MOSI : 8 bits
-        write_volatile(SPI_MISO_DLEN, 7); // Longueur MISO : 8 bits
+            // Longueur des données
+            write_volatile(SPI_MOSI_DLEN, 7); // Longueur MOSI : 8 bits
+            write_volatile(SPI_MISO_DLEN, 7); // Longueur MISO : 8 bits
+        }
     }
-}
 
-/// Envoi de données via SPI
-pub fn send(data: u8) {
-    unsafe {
-        write_volatile(SPI_W0, data as u32); // Charger la donnée dans le buffer
-        write_volatile(SPI_CMD, 1 << 7); // Lancer la transmission
-        while (read_volatile(SPI_CMD) & (1 << 7)) != 0 {} // Attendre la fin de la transmission
+    /// Envoi de données via SPI
+    pub fn send(data: u8) {
+        unsafe {
+            write_volatile(SPI_W0, data as u32); // Charger la donnée dans le buffer
+            write_volatile(SPI_CMD, 1 << 7); // Lancer la transmission
+            while (read_volatile(SPI_CMD) & (1 << 7)) != 0 {} // Attendre la fin de la transmission
+        }
     }
-}
 
-/// Réception de données via SPI
-pub fn receive() -> u8 {
-    send(0xFF); // Envoyer un octet "dummy" pour générer l'horloge
-    unsafe { read_volatile(SPI_W0) as u8 } // Lire la donnée reçue depuis le buffer
+    /// Réception de données via SPI
+    pub fn receive() -> u8 {
+        Spi::send(0xFF); // Envoyer un octet "dummy" pour générer l'horloge
+        unsafe { read_volatile(SPI_W0) as u8 } // Lire la donnée reçue depuis le buffer
+    } 
 }
