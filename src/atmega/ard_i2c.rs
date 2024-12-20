@@ -1,3 +1,4 @@
+//I2C pour l'arduino
 pub struct I2cInterface;
 
 impl I2cInterface {
