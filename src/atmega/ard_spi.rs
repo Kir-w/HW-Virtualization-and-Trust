@@ -1,10 +1,9 @@
 //SPI pour l'arduino
 pub struct Spi;
 // SPI Registers
-const SPCR: *mut u8 = 0x2C as *mut u8; // SPI Control Register
-const SPSR: *mut u8 = 0x2D as *mut u8; // SPI Status Register
-const SPDR: *mut u8 = 0x2E as *mut u8; // SPI Data Register
-
+const SPCR: *mut u8 = 0x2C as *mut u8; 
+const SPSR: *mut u8 = 0x2D as *mut u8; 
+const SPDR: *mut u8 = 0x2E as *mut u8; 
 
 // Initialisation SPI
 pub fn init_master() {
@@ -16,13 +15,13 @@ pub fn init_master() {
 // Envoie de la data via SPI
 pub fn send(data: u8) {
     unsafe {
-        *SPDR = data; // Load data into the buffer
-        while (*SPSR & (1 << 7)) == 0 {} // Wait until transmission complete
-    }
+        *SPDR = data; 
+        while (*SPSR & (1 << 7)) == 0 {} // Attendre jusqu'à la transmission complete
+        }
 }
 
 // Reception de la data via SPI
 pub fn receive() -> u8 {
-    send(0xFF); // Send dummy byte to generate clock
-    unsafe { *SPDR } // Read received data from the buffer
+    send(0xFF); // Envoie dummy byte à generate clock
+    unsafe { *SPDR } // Lire la data reçu
 }
