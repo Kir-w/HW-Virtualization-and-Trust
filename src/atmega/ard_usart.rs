@@ -20,7 +20,7 @@ impl Usart {
 
             // Activer TX et RX
             write_volatile(UCSR0B, (1 << 3) |(1 << 4) );
-            // Configurer USART : 8 data bits, 1 stop bit, no parity
+            // Configurer USART : 8 data bits, 1 stop bit, pas de parité
             write_volatile(UCSR0C, (1 << 1) | (1 << 2));
         }
     }
