@@ -1,3 +1,4 @@
+//EQUIVALENT DE LA FONCTION MAIN POUR L'ESP32 QUI SERA APPELE DANS LE MAIN SI ON EN UTILSE UNE
 pub mod esp_gpio;
 use esp_gpio::{Gpio, PinMode};
 
