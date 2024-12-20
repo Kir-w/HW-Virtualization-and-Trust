@@ -1,3 +1,4 @@
+//USART pour l'arduino
 use core::ptr::{read_volatile, write_volatile};
 
 // Définition des registres pour l'USART sur l'Atmega328p
