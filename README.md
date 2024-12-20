@@ -34,3 +34,11 @@ The Inter-Integrated Circuit feature
 
 
 *The files build.rs, memory.x, openocd.cfg and openocd.gdb were created for the emulation with qemu, they are from https://github.com/rust-embedded/cortex-m-quickstart.
+
+
+
+[CORRECTION SPI] (don't hesitate to remove that part)
+You could implement the peripheral/slave mode as well.
+You are using some external HAL (rp_pico, embedded_hal) for a part of your SPI feature.
+About the other external HAL avr-device (in your Cargo.toml file), even if you are not using it, I recommand you to remove it from your dependencies, it could generate errors.
+You could abstract more the register content, for example 0x2C is not very explicit, you may want to customize your parameters more accurately (therefore you could use more freely CPOL, CPHA, BR, MSTR...).
