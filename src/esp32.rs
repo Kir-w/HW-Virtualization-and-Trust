@@ -1,4 +1,3 @@
-//EQUIVALENT DE LA FONCTION MAIN POUR L'ESP32 QUI SERA APPELE DANS LE MAIN SI ON EN UTILSE UNE
 pub mod esp_gpio;
 use esp_gpio::{Gpio, PinMode};
 
@@ -12,26 +11,28 @@ pub mod esp_i2c;
 use esp_i2c::I2cInterface;
 
 pub fn fn_esp() -> ! {
-    let gpio = Gpio::new(8); // Utiliser la broche GPIO8
-    gpio.pin_mode(PinMode::Output); // Configurer GPIO8 comme sortie
-
+    let gpio = Gpio::new();
+    gpio.pin_mode(2,PinMode::Output); // Configurer GPIO2 -> led embarquée
+    Spi::init_master();
     Usart::init(9600); // Initialiser USART
     I2cInterface::init(400_000); // Initialiser I2C avec une fréquence de 400kHz
 
     loop {
         // Allumer la LED
-        gpio.digital_write(true);
+        gpio.digital_write(2,true);
         Usart::send(1); // Envoyer un signal via USART
+        Spi::send(0x11); // Envoyer des données via SPI
         let sensor_data = I2cInterface::read_sensor(0x40, 0x00); // Lire un capteur via I2C
 
         delay();
 
         // Éteindre la LED
-        gpio.digital_write(false);
+        gpio.digital_write(2,false);
         Usart::send(0); // Envoyer un autre signal
+        Spi::receive(); // Lire la réponse SPI
         delay();
 
-        // Traiter les données du capteur I2C (par exemple, envoyer via USART)
+        // Traiter les données du capteur I2C
         Usart::send(sensor_data);
     }
 }
