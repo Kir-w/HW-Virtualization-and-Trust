@@ -24,7 +24,7 @@ const I2C_CTRL: *mut u32 = (I2C_BASE + 0x00) as *mut u32;
 const I2C_STATUS: *const u32 = (I2C_BASE + 0x2C) as *const u32;
 
 impl I2cInterface {
-    /// Initialisation de l'I2C en mode maître
+    // Initialisation de l'I2C en mode maître
     pub fn init(freq_hz: u32) {
         unsafe {
             // Configurer les périodes de l'horloge (SCL low/high)
@@ -37,7 +37,7 @@ impl I2cInterface {
         }
     }
 
-    /// Envoi d'un octet via I2C
+    // Envoi d'un octet via I2C
     pub fn send(address: u8, data: u8) {
         unsafe {
             // Charger l'adresse et les données dans le FIFO
@@ -52,7 +52,7 @@ impl I2cInterface {
         }
     }
 
-    /// Lecture d'un octet via I2C
+    // Lecture d'un octet via I2C
     pub fn read(address: u8, register: u8) -> u8 {
         unsafe {
             // Charger l'adresse et le registre à lire
@@ -75,7 +75,7 @@ impl I2cInterface {
         }
     }
 
-    /// Fonction pour lire un capteur via I2C
+    // Fonction pour lire un capteur via I2C
     pub fn read_sensor(address: u8, register: u8) -> u8 {
         Self::read(address, register)
     }
