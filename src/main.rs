@@ -17,7 +17,7 @@ mod esp32;
 #[cfg(feature = "esp32")]
 use esp32::fn_esp;
 
-// To handle the error
+// Pour gèrer les erreurs
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
     loop {}
